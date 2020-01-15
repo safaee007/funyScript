@@ -1,0 +1,112 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>game: lottory</title>
+  <style>
+    
+    .container{
+      width: 50%;
+      padding: 10px;
+      display: block;
+      margin: auto;
+      border: 1px solid #dcdcdc;
+    }
+
+	ul{
+      list-style: none;
+    }
+    ul li{
+      display: inline-block;
+      border-radius: 30px;
+      width: 200px;
+      height: 80px;
+      padding: 5px;
+      text-align: center;
+      top: 10px;
+      background-color: chocolate;
+      font-size: 16px;
+      color: bisque;
+      font-weight: 900;
+    }
+    .next-ball{
+      color: white;
+      bottom: 20px;
+      height: 40px;
+      font-size: 16px;
+      background: #7ac9ed;
+      font-weight: bold;
+    }
+    .play-win{
+      color: white;
+      bottom: 20px;      
+      height: 40px;
+      font-size: 16px;
+      background: chocolate;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <div class="container">
+	  <ul class="ball-placeholders">
+		  <li class="ball-placeholder" id="win"></li>
+	  </ul>
+    
+    <button class="next-ball" onclick="lottori()">وارد کردن اعضا</button>
+    <button class="play-win" onclick="winer()">انتخاب برنده</button>
+  </div>
+
+
+
+  <script>
+    const lottoriList = [];
+	
+    function lottori()
+    {
+      let list = prompt("enter users:");
+      let users = list.split(",");
+      let count = users.length;
+
+      if(lottoriList.length < 1)
+      {
+        for(let i =0; i<count;  i++)
+        {
+          if(users[i].trim() != "")
+          {
+            lottoriList.push(users[i]);
+          }
+        }
+      }
+    }
+
+    function winer()
+    {
+      let count = lottoriList.length;
+      if(count > 0)
+      {
+        let item = Math.floor(Math.random() * count);
+        console.log(lottoriList);
+        console.log(item);
+        document.getElementById("win").innerHTML = item > 0 ? lottoriList[item - 1] : lottoriList[item];
+      }else
+      {
+        document.getElementById("win").innerHTML = "کاربر وارد نمایید";
+      }
+    }
+    
+
+    //start
+    const gameArea = document.querySelector(".game");
+    const button = document.querySelector("button");
+    const usertryArea = document.querySelector(".userTry");
+
+    //end
+  </script>
+</body>
+
+</html>
