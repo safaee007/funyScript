@@ -14,6 +14,12 @@
       margin: auto;
       border: 1px solid #dcdcdc;
     }
+    .content{
+      text-align: right;
+    }
+    .title{
+      font-weight: 900;
+    }
 
 	ul{
       list-style: none;
@@ -21,8 +27,8 @@
     ul li{
       display: inline-block;
       border-radius: 30px;
-      width: 200px;
-      height: 80px;
+      min-width: 80px;
+      min-height: 20px;
       padding: 5px;
       text-align: center;
       top: 10px;
@@ -59,16 +65,31 @@
     
     <button class="next-ball" onclick="lottori()">وارد کردن اعضا</button>
     <button class="play-win" onclick="winer()">انتخاب برنده</button>
+  </div>  
+
+  <div class="container">
+    <div class="content">
+      <p class="title">قرعه کشی مدل دوم</p>
+      <button class="next-ball" onclick="lottori2()">وارد کردن اعضا</button>
+      <button class="play-win" onclick="winer2()">انتخاب برنده</button>
+
+      <ul class="ball-placeholders" id="win2">
+        
+      </ul>
+
+    </div>
   </div>
 
 
 
   <script>
     const lottoriList = [];
+    let usersLottori = 0;
+    const winersList = [];
 	
     function lottori()
     {
-      let list = prompt("enter users:");
+      let list = prompt("enter users: جدا سازی با ',' ", "");
       let users = list.split(",");
       let count = users.length;
 
@@ -90,15 +111,42 @@
       if(count > 0)
       {
         let item = Math.floor(Math.random() * count);
-        console.log(lottoriList);
-        console.log(item);
-        document.getElementById("win").innerHTML = item > 0 ? lottoriList[item - 1] : lottoriList[item];
+        console.log(item);  
+        document.getElementById("win").innerHTML = lottoriList[item];
       }else
       {
         document.getElementById("win").innerHTML = "کاربر وارد نمایید";
       }
     }
-    
+
+    function  lottori2()
+    {
+      var count = prompt("تعداد افراد شرکت کننده؟");
+      usersLottori = parseInt(count);
+      if(usersLottori > 1)
+      {
+      }
+      else
+      {
+        alert('مقدار نامعتبر')
+      }
+    } 
+
+    function winer2()
+    {
+      if(usersLottori > 1)
+      {
+        let winer = Math.floor(Math.random() * usersLottori);
+        winersList.push(winer);
+        
+        var li  = document.createElement("LI");
+        var item = document.createTextNode(winer);        
+        li.appendChild(item)
+        console.log(li);
+        document.getElementById('win2').appendChild(li);
+      }
+    }
+
 
     //start
     const gameArea = document.querySelector(".game");
