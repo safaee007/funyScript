@@ -17,10 +17,16 @@
     .content{
       text-align: right;
     }
+    .wrapper{
+      padding: 5px;
+    }
     .title{
       font-weight: 900;
     }
-
+    .repeatClass
+    {
+      border: 1px solid rgb(55, 0, 255);
+    }
 	ul{
       list-style: none;
     }
@@ -53,6 +59,12 @@
       background: chocolate;
       font-weight: bold;
     }
+    #lottori3 span{
+      display: inline-block;
+      margin: 5px;
+      border: solid 1px salmon;
+      padding: 5px;
+    }
   </style>
 </head>
 
@@ -74,9 +86,17 @@
       <button class="play-win" onclick="winer2()">انتخاب برنده</button>
 
       <ul class="ball-placeholders" id="win2">
-        
-      </ul>
+      </ul>      
+    </div>
+  </div>
 
+  <div class="container">
+    <p><strong>lottory</strong></p>
+    <div class="wrapper">
+      <button class="next-ball" id="lottori-ball" onclick="lottori3()">وارد کردن اعضا</button>
+      <button class="play-win" id="lottori-win" onclick="winer3()">انتخاب برنده</button>
+      <div id="lottori3">
+      </div>
     </div>
   </div>
 
@@ -86,7 +106,13 @@
     const lottoriList = [];
     let usersLottori = 0;
     const winersList = [];
-	
+    const personsLottori = [];
+    const lottori3Area = document.getElementById("lottori3")
+    var lottoriBall = document.getElementById("lottori-ball");
+    var lottoriwin = document.getElementById("lottori-win");
+    lottoriwin.style.display = 'none';
+    console.log(lottoriBall);
+
     function lottori()
     {
       let list = prompt("enter users: جدا سازی با ',' ", "");
@@ -134,19 +160,61 @@
 
     function winer2()
     {
+      let repeatClass =".ss";
+
       if(usersLottori > 1)
       {
         let winer = Math.floor(Math.random() * usersLottori);
         winersList.push(winer);
         
-        var li  = document.createElement("LI");
+        if(winersList.includes(winer))
+        {
+          repeatClass = "repeatClass";
+        }
+
+        var li  = document.createElement("li");
         var item = document.createTextNode(winer);        
-        li.appendChild(item)
+        
+        li.appendChild(item);
         console.log(li);
         document.getElementById('win2').appendChild(li);
       }
     }
 
+    function lottori3()
+    {
+      var list = prompt("اشخاص شرکت کننده را وارد نمایید و با | جدا نمایید!")
+      persons = list.split('|');
+      for(let i =0; i<persons.length; i++)
+      {
+        if(persons[i] != undefined && persons[i] != null && persons[i] != "")
+        {
+          personsLottori.push(persons[i]);
+
+          var node = document.createElement("span");
+          var nodeValue = document.createTextNode(persons[i]);
+          node.id = "p" + i;
+          node.appendChild(nodeValue);
+
+          lottori3Area.appendChild(node);
+        }
+      }
+      lottoriwin.style.display = 'inline-block';
+      lottoriBall.style.display = 'none';
+    }
+
+    function winer3()
+    {
+      let count = personsLottori.length;
+      if(count > 0)
+      {
+        let i = Math.floor(Math.random() * count);
+        console.log(i);
+        let item = document.getElementById("p" + i);
+        item.style.background = 'green';
+        item.style.color = 'white';
+      }
+    }
 
     //start
     const gameArea = document.querySelector(".game");
