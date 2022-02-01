@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2021 by anonymous (http://jsbin.com/comaluwafu/3/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+body {
+  font-family: system-ui;
+}
+
+.i-popover-handle {
+  position: relative;  
+}
+
+.i-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  inset-inline-start: 0;
+  z-index: 1;
+  background-color: #fff;
+  padding: 12px 16px;
+  font-size: 14px;
+  border-radius: 3px;
+  width: max-content;
+  max-height: 300px;
+  overflow: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease-in-out;
+}
+
+.i-popover-handle:hover .i-popover {
+  opacity: 1;
+  pointer-events: auto;  
+}
+</style>
+</head>
+<body>
+  <span class="i-popover-handle">
+    متن یا عنصری که میخوای پاپ اور داشته باشه
+    
+    <div class="i-popover">محتوای پاپ اور</div>
+  </div>
+</body>
+</html>

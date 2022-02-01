@@ -1,0 +1,123 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>game: guess int</title>
+  <style>
+    .numb {
+      font-size: 2em;
+    }
+    .container{
+      width: 50%;
+      padding: 10px;
+      display: block;
+      margin: auto;
+      border: 1px solid #dcdcdc;
+    }
+    .animate{
+      width: 400px;
+      height: 400px;
+      background-color: rgb(53, 163, 163);
+    }
+    #box{
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      background-color: brown;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <div class="container">
+    <span class="userTry"></span>
+    <div class="game"> </div>
+    <button> Start </button>
+<hr/>
+    <div class="animate">
+      <div id="box"></div>
+    </div>
+    <button onclick="myMove()">start animate</button>
+  </div>
+
+
+
+  <script>
+
+    //animate
+    function myMove()
+    {
+      let animate = document.getElementById('box');
+      let pos= 70;
+      let posLeft = 500;
+      var id = setInterval(frame, 10);
+      
+      function frame()
+      {
+        console.log(pos);
+        if(pos == 400)
+        {
+          clearInterval(id);
+        }else
+        {
+          if(pos == 250 && posLeft < 620)
+          {
+            posLeft++;
+            animate.style.left = posLeft + "px";
+
+          }else
+          {
+            pos++;
+            animate.style.top = pos + "px";
+          }
+        }
+      }
+    }
+    //animateEND
+
+    //start
+    const gameArea = document.querySelector(".game");
+    const button = document.querySelector("button");
+    const usertryArea = document.querySelector(".userTry");
+
+    let gamePlay = false;
+    let userTry = 0;
+
+    button.addEventListener('click', function () {
+      if (!gamePlay) {
+        gamePlay = true;
+        maker();
+        button.innerHTML = "check combo";
+      } else {
+        const numbers = document.querySelectorAll(".numb");
+        for(n =0; n<numbers.length; n++)
+        {
+          console.log(numbers[n].value);
+        }
+      }
+      usertryArea.innerHTML = userTry++;
+    });
+
+    function maker() {
+      for (x = 0; x < 4; x++) {
+        let el = document.createElement("input");
+        el.setAttribute("type", "Number");
+        el.min = 0;
+        el.max = 9;
+        el.style.width = "40px";
+        el.correct = Math.floor(Math.random() * 10);
+        el.value = el.correct;
+        el.classList.add("numb")
+        el.order = x;
+        gameArea.appendChild(el);
+      }
+
+    }
+    //end
+  </script>
+</body>
+
+</html>
