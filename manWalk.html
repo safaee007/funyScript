@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Man-Alone-Night</title>
+</head>
+<!-- add a style tag for css -->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        display: flex;
+        min-height: 100vh;
+    }
+    
+    .container {
+        display: flex;
+        min-height: 100vh;
+        width: 100%;
+        background: #272a35;
+        position: relative;
+        transition: .6s;
+    }
+    
+    .char {
+        margin: auto;
+        width: 300px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    
+    .headchar {
+        width: 50px;
+        height: 50px;
+        background: white;
+        border-radius: 50%;
+        position: relative;
+        top: 20px;
+        left: 35px;
+        animation: headchange 1s infinite 1.6s ease-in;
+    }
+    
+    .bodychar {
+        width: 40px;
+        height: 100px;
+        border-radius: 60px 10px 0 0;
+        background: white;
+        animation: bodychange 1s infinite 1.6s ease-in;
+    }
+    
+    .firstleg,
+    .secondleg {
+        width: 35px;
+        height: 10px;
+        background-color: white;
+        border-radius: 20px 50px 50px 20px;
+        position: relative;
+        top: 55px;
+        left: 20px;
+        animation: walk 2s infinite linear;
+    }
+    
+    .secondleg {
+        top: 25px;
+        animation-delay: 1s;
+    }
+    
+    .shadowleg {
+        border-radius: 50%;
+        background: #575555e8;
+        width: 100px;
+        height: 10px;
+        animation: shadowchange 1s infinite 1.6s ease-in;
+    }
+    
+    @keyframes headchange {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(7px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+    
+    @keyframes bodychange {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(3px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+    
+    @keyframes walk {
+        0% {
+            transform: translateX(0px) rotate(0deg);
+        }
+        20% {
+            transform: translateX(-20px) rotate(0deg);
+        }
+        40% {
+            transform: translate(-40px, 0px) rotate(0deg);
+        }
+        60% {
+            transform: translate(-30px, -10px) rotate(35deg);
+        }
+        90% {
+            transform: translate(10px, -7px) rotate(-35deg);
+        }
+        100% {
+            transform: translateX(0px) rotate(0deg);
+        }
+    }
+    
+    @keyframes shadowchange {
+        0% {
+            width: 100px;
+        }
+        50% {
+            width: 110px;
+        }
+        100% {
+            width: 100px;
+        }
+    }
+    /* Add these features to make the loading page disappear after the website is fully loaded */
+    /* .loaded {
+        opacity: 0;
+        visibility: hidden;
+    }
+    */
+</style>
+
+<body>
+    <div class="container">
+        <div class="char">
+            <div class="headchar"></div>
+            <div class="bodychar"></div>
+            <div class="firstleg"></div>
+            <div class="secondleg"></div>
+            <div class="shadowleg"></div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
